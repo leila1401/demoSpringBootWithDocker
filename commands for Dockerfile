@@ -1,0 +1,13 @@
+# demoSpringBootWithDocker
+
+#build the image:
+docker build -t demo .
+
+#Pull the mysql
+docker pull mysql:5.6
+
+#Container for Mysql:
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=employeemanager -e MYSQL_USER=sa -e MYSQL_PASSWORD=password mysql:5.6
+
+#Container for the application
+ docker run -p 8080:8080 --name demo --link mysql-standalone:mysql demo
